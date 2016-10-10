@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('products','ProductsController');
+Route::resource('shopping_cart','InShopppingCartsController',[
+	'only' => ['store', 'destroy']
+	]);
+
+Route::get('/', 'MainController@home');
+Route::get('/carrito', 'ShoppingCartsController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
